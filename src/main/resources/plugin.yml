@@ -1,0 +1,18 @@
+main: ${project.groupId}.${project.artifactId}.${project.name}
+name: ${project.name}
+version: ${project.version}
+author: Lauriichan
+api-version: 1.13
+
+commands:
+  bind:
+    
+permissions:
+  itembound.*:
+   description: Wildcard permission
+   default: false
+   children:
+     itembound.use: true
+  itembound.use:
+   description: Plugin usage permission
+   default: op
