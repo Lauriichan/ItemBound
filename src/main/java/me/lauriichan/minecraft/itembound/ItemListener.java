@@ -2,6 +2,7 @@ package me.lauriichan.minecraft.itembound;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.Event.Result;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 public final class ItemListener implements Listener {
@@ -14,10 +15,11 @@ public final class ItemListener implements Listener {
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
-        if (!event.getPlayer().hasPermission("itembound.use")) {
+        if (!event.getPlayer().hasPermission("itembound.use") || !itemHandler.handleInteract(event)) {
             return;
         }
-        event.setCancelled(itemHandler.handleInteract(event));
+        event.setUseInteractedBlock(Result.DENY);
+        event.setUseItemInHand(Result.DENY);
     }
 
 }
